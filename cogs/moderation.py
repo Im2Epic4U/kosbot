@@ -35,17 +35,17 @@ class Moderation(commands.Cog):
                     await ctx.send(content=None, embed=embed)
                     return
             else:
-                embed = discord.Embed(title=f"You don't have permission to execute this command, {ctx.author.mention}!", colour=discord.Colour.red())
+                embed = discord.Embed(title=f"You don't have permission to execute this command!", colour=discord.Colour.red())
                 await ctx.send(content=None, embed=embed)
 
     @commands.command()
-    async def ban(self, ctx, message, member : discord.Member, *, reason=None):
+    async def ban(self, ctx, member : discord.Member, *, reason=None):
         if Staff in [role.id for role in ctx.author.roles]:
             await member.ban(reason=reason)
             embed = discord.Embed(title=f'Banned {member.mention} for **{reason}**', colour=discord.Colour.green())
             await ctx.send(content=None, embed=embed)
         else:
-            embed = discord.Embed(title=f"You don't have permission to execute this command, {ctx.author.mention}!", colour=discord.Colour.red())
+            embed = discord.Embed(title=f"You don't have permission to execute this command!", colour=discord.Colour.red())
             await ctx.send(content=None, embed=embed)
 
     @commands.command()
@@ -54,8 +54,9 @@ class Moderation(commands.Cog):
             await ctx.channel.purge(limit=amount)
             embed = discord.Embed(title=f'Cleared **{amount}** messages.', colour=discord.Colour.green())
             await ctx.send(content=None, embed=embed)
+            await ctx.channel.purge(limit=1)
         else:
-            embed = discord.Embed(title=f"You don't have permission to execute this command, {ctx.author.mention}!", colour=discord.Colour.red())
+            embed = discord.Embed(title=f"You don't have permission to execute this command!", colour=discord.Colour.red())
             await ctx.send(content=None, embed=embed)
 
 def setup(client):
