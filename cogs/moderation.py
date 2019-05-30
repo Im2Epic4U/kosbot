@@ -16,7 +16,7 @@ class Moderation(commands.Cog):
             embed = discord.Embed(title=f'Kicked **{member.mention}** for **{reason}**', colour=discord.Colour.green())
             await ctx.send(content=None, embed=embed)
         else:
-            embed = discord.Embed(title=f"You don't have permission to execute this command, {ctx.author.mention}!")
+            embed = discord.Embed(title=f"You don't have permission to execute this command!")
             await ctx.send(content=None, embed=embed)
             
 
@@ -39,7 +39,7 @@ class Moderation(commands.Cog):
                 await ctx.send(content=None, embed=embed)
 
     @commands.command()
-    async def ban(self, ctx, member : discord.Member, *, reason=None):
+    async def ban(self, ctx, member: discord.Member, *, reason=None):
         if Staff in [role.id for role in ctx.author.roles]:
             await member.ban(reason=reason)
             embed = discord.Embed(title=f'Banned {member.mention} for **{reason}**', colour=discord.Colour.green())
