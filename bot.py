@@ -27,37 +27,41 @@ async def on_member_join(member):
 
 @tasks.loop(seconds=7200)
 async def bumpreminder(message):
-    await message.channel.send("It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!")
+    channel = discord.utils.get(member.guild.channels, name='⏐-bump')
+    await channel.send("It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!")
+    # embed = discord.Embed(description="It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!", colour=discord.Colour.blue())
+    # await channel.send(content=None, embed=embed)
 
 @client.command()
 async def bumptest(ctx):
     if ctx.author.id == OwnerID:
         channel = discord.utils.get(ctx.guild.channels, name='⏐-bump')
-        await channel.send("It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!")
-        e = discord.Embed(title=f"Successfully sent bump message, {ctx.author.mention}!", colour=discord.Colour.green())
+        embed = discord.Embed(description="It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!", colour=discord.Colour.blue())
+        await channel.send(content=None, embed=embed)
+        e = discord.Embed(description=f"Successfully sent bump message, {ctx.author.mention}!", colour=discord.Colour.green())
         await ctx.send(content=None, embed=e)
     else:
-        e = discord.Embed(title=f"You don't have permission to execute this command, {ctx.author.mention}!", colour=discord.Colour.red())
+        e = discord.Embed(description=f"You don't have permission to execute this command, {ctx.author.mention}!", colour=discord.Colour.red())
         await ctx.send(content=None, embed=e)
 
 @client.command()
 async def load(ctx, extension):
     if message.author.id == OwnerID:
         client.load_extension(f'cogs.{extension}')
-        e = discord.Embed(title=f'Loaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
+        e = discord.Embed(description=f'Loaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
         await message.channel.send(content=None, embed=e)
     else:
-        e = discord.Embed(title=f"You don't have permission to execute this command, {ctx.author.mention}", colour=discord.Colour.red())
+        e = discord.Embed(description=f"You don't have permission to execute this command, {ctx.author.mention}", colour=discord.Colour.red())
         await message.channel.send(content=None, embed=e)
 
 @client.command()
 async def unload(ctx, extension):
     if message.author.id == OwnerID:
         client.unload_extension(f'cogs.{extension}')
-        e = discord.Embed(title=f'Unloaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
+        e = discord.Embed(description=f'Unloaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
         await message.channel.send(content=None, embed=e)
     else:
-        e = discord.Embed(title=f"You don't have permission to execute this command, {ctx.author.mention}", colour=discord.Colour.red())
+        e = discord.Embed(description=f"You don't have permission to execute this command, {ctx.author.mention}", colour=discord.Colour.red())
         await message.channel.send(content=None, embed=e)
 
 @client.command()
@@ -65,10 +69,10 @@ async def reload(ctx, extension):
     if message.author.id == OwnerID:
         client.unload_extension(f'cogs.{extension}')
         client.load_extension(f'cogs.{extension}')
-        e = discord.Embed(title=f'Reloaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
+        e = discord.Embed(description=f'Reloaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
         await message.channel.send(content=None, embed=e)
     else:
-        e = discord.Embed(title=f"You don't have permission to execute this command!, {ctx.author.mention}", colour=discord.Colour.red())
+        e = discord.Embed(description=f"You don't have permission to execute this command!, {ctx.author.mention}", colour=discord.Colour.red())
         await message.channel.send(content=None, embed=e)
 
 for filename in os.listdir('./cogs'):

@@ -13,19 +13,21 @@ class Owner(commands.Cog):
     @commands.command()
     async def logout(self, ctx):
         if ctx.message.author.id == OwnerID or Nick:
-            await ctx.send(f':white_check_mark: Logging out.')
+            embed = discord.Embed(description='✅ Logging out.', colour=discord.Colour.orange())
+            await ctx.send(content=None, embed=embed)
             await self.client.logout()
         else:
-            await ctx.send(f"You don't have permission to execute this command!")
+            embed = discord.Embed(description="You don't have permission to execute this command!", colour=discord.Colour.red())
+            await ctx.send(content=None, embed=embed)
 
     @commands.command()
     async def say(self, ctx, *, arg, amount=1):
         if ctx.message.author.id == OwnerID or Nick:
             await ctx.channel.purge(limit=amount)
-            e = discord.Embed(title=f'{arg}', colour=discord.Colour.green())
+            e = discord.Embed(description=f'{arg}', colour=discord.Colour.green())
             await ctx.send(content=None, embed=e)
         else:
-            e = discord.Embed(title=f"You don't have permission to use this command, {ctx.author.mention}!")
+            e = discord.Embed(description=f"You don't have permission to use this command, {ctx.author.mention}!")
             await ctx.send(content=None, embed=e)
 
 
