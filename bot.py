@@ -25,24 +25,24 @@ async def on_member_join(member):
         embed.set_image(url="https://i.imgur.com/HZ3jo0t.png")
         await channel.send(content=f'**TAG:** {member.mention}, <@&546833327710142504>', embed=embed)
 
-@tasks.loop(seconds=7200)
-async def bumpreminder(message):
-    channel = discord.utils.get(member.guild.channels, name='⏐-bump')
-    await channel.send("It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!")
-    # embed = discord.Embed(description="It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!", colour=discord.Colour.blue())
-    # await channel.send(content=None, embed=embed)
+# @tasks.loop(seconds=10)
+# async def bumpreminder(ctx):
+#     bump = discord.utils.get(ctx.guild.channels, name='⏐-bump')
+#     await bump.send("It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!")
+#     embed = discord.Embed(description="It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!", colour=discord.Colour.blue())
+#     await channel.send(content=None, embed=embed)
 
-@client.command()
-async def bumptest(ctx):
-    if ctx.author.id == OwnerID:
-        channel = discord.utils.get(ctx.guild.channels, name='⏐-bump')
-        embed = discord.Embed(description="It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!", colour=discord.Colour.blue())
-        await channel.send(content=None, embed=embed)
-        e = discord.Embed(description=f"Successfully sent bump message, {ctx.author.mention}!", colour=discord.Colour.green())
-        await ctx.send(content=None, embed=e)
-    else:
-        e = discord.Embed(description=f"You don't have permission to execute this command, {ctx.author.mention}!", colour=discord.Colour.red())
-        await ctx.send(content=None, embed=e)
+# @client.command()
+# async def bumptest(ctx):
+#     if ctx.author.id == OwnerID:
+#         channel = discord.utils.get(ctx.guild.channels, name='⏐-bump')
+#         embed = discord.Embed(description="It's that time again!\n\n<@&546833327815000098>, make sure you do !d bump, !disboard bump to bump our server!", colour=discord.Colour.blue())
+#         await channel.send(content=None, embed=embed)
+#         e = discord.Embed(description=f"Successfully sent bump message, {ctx.author.mention}!", colour=discord.Colour.green())
+#         await ctx.send(content=None, embed=e)
+#     else:
+#         e = discord.Embed(description=f"You don't have permission to execute this command, {ctx.author.mention}!", colour=discord.Colour.red())
+#         await ctx.send(content=None, embed=e)
 
 @client.command()
 async def load(ctx, extension):
