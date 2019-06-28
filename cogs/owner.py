@@ -1,4 +1,5 @@
 import discord
+import asyncio
 from discord.ext import commands
 
 client = commands.Bot(command_prefix = 'k?')
@@ -29,7 +30,6 @@ class Owner(commands.Cog):
         else:
             e = discord.Embed(description=f"You don't have permission to use this command, {ctx.author.mention}!")
             await ctx.send(content=None, embed=e)
-
 
 def setup(client):
     client.add_cog(Owner(client))
