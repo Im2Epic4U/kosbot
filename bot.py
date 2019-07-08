@@ -46,34 +46,34 @@ async def on_member_join(member):
 
 @client.command()
 async def load(ctx, extension):
-    if message.author.id == OwnerID:
+    if ctx.message.author.id == OwnerID:
         client.load_extension(f'cogs.{extension}')
         e = discord.Embed(description=f'Loaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
-        await message.channel.send(content=None, embed=e)
+        await ctx.send(content=None, embed=e)
     else:
         e = discord.Embed(description=f"You don't have permission to execute this command, {ctx.author.mention}", colour=discord.Colour.red())
-        await message.channel.send(content=None, embed=e)
+        await ctx.send(content=None, embed=e)
 
 @client.command()
 async def unload(ctx, extension):
-    if message.author.id == OwnerID:
+    if ctx.message.author.id == OwnerID:
         client.unload_extension(f'cogs.{extension}')
         e = discord.Embed(description=f'Unloaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
-        await message.channel.send(content=None, embed=e)
+        await ctx.send(content=None, embed=e)
     else:
         e = discord.Embed(description=f"You don't have permission to execute this command, {ctx.author.mention}", colour=discord.Colour.red())
-        await message.channel.send(content=None, embed=e)
+        await ctx.send(content=None, embed=e)
 
 @client.command()
 async def reload(ctx, extension):
-    if message.author.id == OwnerID:
+    if ctx.message.author.id == OwnerID:
         client.unload_extension(f'cogs.{extension}')
         client.load_extension(f'cogs.{extension}')
         e = discord.Embed(description=f'Reloaded {extension}, {ctx.author.mention}!', colour=discord.Colour.green())
-        await message.channel.send(content=None, embed=e)
+        await ctx.send(content=None, embed=e)
     else:
         e = discord.Embed(description=f"You don't have permission to execute this command!, {ctx.author.mention}", colour=discord.Colour.red())
-        await message.channel.send(content=None, embed=e)
+        await ctx.send(content=None, embed=e)
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
