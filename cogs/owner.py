@@ -4,7 +4,6 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix = 'k?')
 OwnerID = 379400007410909186
-Nick = 269946726918389770
 
 class Owner(commands.Cog):
 
@@ -13,7 +12,7 @@ class Owner(commands.Cog):
     
     @commands.command()
     async def logout(self, ctx):
-        if ctx.message.author.id == OwnerID or Nick:
+        if ctx.message.author.id == OwnerID:
             embed = discord.Embed(description='✅ Logging out.', colour=discord.Colour.orange())
             await ctx.send(content=None, embed=embed)
             await self.client.logout()
@@ -23,7 +22,7 @@ class Owner(commands.Cog):
 
     @commands.command()
     async def say(self, ctx, *, arg, amount=1):
-        if ctx.message.author.id == OwnerID or Nick:
+        if ctx.message.author.id == OwnerID:
             await ctx.channel.purge(limit=amount)
             e = discord.Embed(description=f'{arg}', colour=discord.Colour.green())
             await ctx.send(content=None, embed=e)
